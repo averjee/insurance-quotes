@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="col-lg-30 mx-auto">
+    <div class="card card-body">
+      <h4 class="text-center mb-3">Insurance Quotes <a routerLink="/add" class="btn btn-sm btn-primary float-right">Add Quote</a>
+      </h4>
+      <p *ngIf="users.length == 0" class="text-center my-5 text-danger"> No quotes found</p>
+      <div *ngIf="users.length >0">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Quote Identifier</th>
+              <th>Quote Reference</th>
+              <th>Client Name</th>
+              <th>Client DOB</th>
+              <th>Smoker Status</th>
+              <th>Premium Amount</th>
+              <th>Created Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; index as i">
+              <td>{{user.quoteIdentifier}}</td>
+              <td>{{user.quoteReference}}</td>
+              <td>{{user.clientName}}</td>
+              <td>{{user.clientDOB | date: 'dd/MM/yyyy'}}</td>
+              <td>{{user.smokerStatus}}</td>
+              <td>{{user.premiumAmount | currency: 'GBP'}}</td>
+              <td>{{user.createdDate | date:'medium'}}</td>
+              <td>
+                <button class="btn btn-danger mr-2 btn-sm" (click)="deleteData(user)">Delete</button>
+                <button class="btn btn-primary btn-sm" (click)="handleEdit(user , i)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
